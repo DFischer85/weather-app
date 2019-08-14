@@ -16,6 +16,7 @@ const weatherForm = document.querySelector('form');
 const search = document.querySelector('input');
 const locationPar = document.querySelector('#location');
 const forecastPar = document.querySelector('#forecast');
+const summaryPar = document.querySelector('#summary');
 
 weatherForm.addEventListener('submit', (e) => {
   
@@ -24,15 +25,18 @@ weatherForm.addEventListener('submit', (e) => {
 
     locationPar.textContent = 'Loading...';
     forecastPar.textContent = '';
+    summaryPar.textContent = '';
 
     getWeather(location, (error, data) => {
         if(error) {
 
             locationPar.textContent = error;
+            summaryPar.textContent = '';
             return forecastPar.textContent = '';
         }
 
         locationPar.textContent = data.location;
+        summaryPar.textContent = data.summary;
         forecastPar.textContent = data.forecast;
     })
 
